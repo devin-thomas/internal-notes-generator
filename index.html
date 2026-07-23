@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="author" content="Devin Thomas">
+  <title>Internal Notes Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">Portfolio demonstration</p>
+      <h1>Internal Notes Generator</h1>
+      <p class="subtitle">Turn a customer interaction into a clear, consistent, copy-ready support note.</p>
+      <div class="notice" role="note">
+        Clean-room portfolio demo. No employer code, internal data, or proprietary workflow is included.
+      </div>
+    </div>
+  </header>
+
+  <main class="container app-grid">
+    <section class="panel" aria-labelledby="form-title">
+      <div class="panel-heading">
+        <div>
+          <p class="step-label">Step 1</p>
+          <h2 id="form-title">Document the interaction</h2>
+        </div>
+        <button type="button" class="button button-secondary" id="demoButton">Load demo data</button>
+      </div>
+
+      <form id="noteForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="interactionType">Interaction type</label>
+            <select id="interactionType" name="interactionType">
+              <option value="Account access">Account access</option>
+              <option value="Billing question">Billing question</option>
+              <option value="Technical issue">Technical issue</option>
+              <option value="Eligibility or policy question">Eligibility or policy question</option>
+              <option value="General inquiry">General inquiry</option>
+            </select>
+            <p class="hint" id="interactionGuidance">Capture the access problem, troubleshooting completed, and final status.</p>
+          </div>
+
+          <div class="field">
+            <label for="channel">Contact channel</label>
+            <select id="channel" name="channel">
+              <option value="Phone">Phone</option>
+              <option value="Chat">Chat</option>
+              <option value="Email">Email</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="customerGoal">Customer goal <span aria-hidden="true">*</span></label>
+          <input id="customerGoal" name="customerGoal" type="text" maxlength="180" aria-describedby="customerGoalError">
+          <p class="error" id="customerGoalError"></p>
+        </div>
+
+        <div class="field">
+          <label for="verification">Verification status</label>
+          <select id="verification" name="verification">
+            <option value="Completed">Completed</option>
+            <option value="Not required">Not required</option>
+            <option value="Unable to complete">Unable to complete</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="issueSummary">Issue summary <span aria-hidden="true">*</span></label>
+          <textarea id="issueSummary" name="issueSummary" rows="4" aria-describedby="issueSummaryError"></textarea>
+          <p class="error" id="issueSummaryError"></p>
+        </div>
+
+        <div class="field">
+          <label for="actionsTaken">Actions taken <span aria-hidden="true">*</span></label>
+          <textarea id="actionsTaken" name="actionsTaken" rows="5" aria-describedby="actionsTakenError"></textarea>
+          <p class="error" id="actionsTakenError"></p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="outcome">Outcome <span aria-hidden="true">*</span></label>
+            <select id="outcome" name="outcome" aria-describedby="outcomeError">
+              <option value="">Select an outcome</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Follow-up required">Follow-up required</option>
+              <option value="Escalated">Escalated</option>
+              <option value="Customer disconnected">Customer disconnected</option>
+            </select>
+            <p class="error" id="outcomeError"></p>
+          </div>
+
+          <div class="field">
+            <label for="disposition">Disposition <span aria-hidden="true">*</span></label>
+            <select id="disposition" name="disposition" aria-describedby="dispositionError">
+              <option value="">Select a disposition</option>
+              <option value="Information provided">Information provided</option>
+              <option value="Troubleshooting completed">Troubleshooting completed</option>
+              <option value="Account action completed">Account action completed</option>
+              <option value="Referred to another team">Referred to another team</option>
+              <option value="Pending additional information">Pending additional information</option>
+            </select>
+            <p class="error" id="dispositionError"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="followUp">Follow-up or next step</label>
+          <textarea id="followUp" name="followUp" rows="3"></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="button button-primary">Generate note</button>
+          <button type="button" class="button button-ghost" id="clearButton">Clear all</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="output-title">
+      <div class="panel-heading">
+        <div>
+          <p class="step-label">Step 2</p>
+          <h2 id="output-title">Review the note</h2>
+        </div>
+        <button type="button" class="button button-secondary" id="copyButton" disabled>Copy note</button>
+      </div>
+
+      <p class="status" id="statusMessage" role="status" aria-live="polite"></p>
+      <pre id="noteOutput" tabindex="0">Complete the form and select “Generate note.”</pre>
+
+      <div class="field checkbox-field">
+        <input id="reviewed" name="reviewed" type="checkbox" disabled aria-describedby="reviewedHint">
+        <div>
+          <label for="reviewed">I reviewed the generated note for accuracy.</label>
+          <p class="hint" id="reviewedHint">Generate a note before confirming your review.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p><strong>Designed and built by Devin Thomas.</strong> Clean-room portfolio reconstruction of an internal support workflow tool originally created during my time at Accenture.</p>
+    <p>No data is stored or transmitted. Refreshing the page clears all entered information.</p>
+  </footer>
+</body>
+</html>
